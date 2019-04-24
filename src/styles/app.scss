@@ -12,7 +12,33 @@
   }
   
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: #333;
     -webkit-font-smoothing: antialiased !important;
   }
+
+  .spotify-btn{
+    cursor: pointer;
+    margin: 32px 0 32px;
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.2;
+    border-radius: 6px;
+    padding: 11px 16px 9px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 19px 56px 21px;    
+    color: #FFF;
+    background-color: #1DB954;
+
+    &:hover{
+      background-color: #1ED760;
+    }
+    &:active{
+      background-color: #1DA64D;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+  }
+}

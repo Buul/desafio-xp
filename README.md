@@ -16,3 +16,8 @@
 ### run
 
 yarn start:dev
+
+## integration with Netlify
+
+integration with branch master
+url: https://desafio-xp.netlify.com/
