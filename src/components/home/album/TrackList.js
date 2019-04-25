@@ -10,15 +10,19 @@ import ModalPlayer from '../../player';
 const TrackContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${pxToRem(20)};
+  margin-top: ${pxToRem(40)};
   width: 100%;
+
+  @media ${props => props.theme.device.md} {
+    margin: ${pxToRem(0)} 0 0 ${pxToRem(40)};
+  }
 `;
 
 const RowTrack = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  margin-top: ${pxToRem(20)};
+  margin-bottom: ${pxToRem(20)};
 `;
 
 const TrackList = ({ listTrack, image }) => {

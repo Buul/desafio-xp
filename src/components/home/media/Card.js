@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxMedia, DiskCover } from '../style';
+import { BoxMedia, DiskCover, TypeTitle } from '../style';
 import { Typography } from '../../ui';
 import spotifyEmpty from '../../../assets/spotify_empty.jpg';
 
@@ -7,9 +7,11 @@ const Media = ({ data, title, type, onSelectMedia }) => (
   <>
     {data && (
       <>
-        <Typography margin="20px 0" size={16} weight="600" lineheight="20" color="greyLight">
-          {title}
-        </Typography>
+        <TypeTitle>
+          <Typography margin="20px 0" size={16} weight="600" lineheight="20" color="greyLight">
+            {title}
+          </Typography>
+        </TypeTitle>
         {data.items.map(item => {
           const image = type === 'track' ? item.album.images : item.images;
           const srcImage = (image.length && image[0].url) || spotifyEmpty;

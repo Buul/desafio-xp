@@ -40,12 +40,35 @@ const Album = ({ album, history, spinner, showMessage }) => {
           history.push('/home');
         }}
       />
+
       <Content>
-        {(album && (
-          <>
-            <DiskCover>
-              <img src={image} alt="img" />
-            </DiskCover>
+        <div className="box-album">
+          {(album && (
+            <div className="desk-info-album">
+              <DiskCover>
+                <img src={image} alt="img" />
+              </DiskCover>
+              <Typography
+                margin="5px 0"
+                size={13}
+                weight="600"
+                lineheight="16"
+                color="white"
+                textalign="center"
+              >
+                {album.name}
+              </Typography>
+              <Typography
+                size={12}
+                weight="600"
+                lineheight="16"
+                color="greyMedium"
+                textalign="center"
+              >
+                {album.artists[0].name}
+              </Typography>
+            </div>
+          )) || (
             <Typography
               margin="5px 0"
               size={13}
@@ -54,31 +77,11 @@ const Album = ({ album, history, spinner, showMessage }) => {
               color="white"
               textalign="center"
             >
-              {album.name}
+              Nenhuma música encontrada
             </Typography>
-            <Typography
-              size={12}
-              weight="600"
-              lineheight="16"
-              color="greyMedium"
-              textalign="center"
-            >
-              {album.artists[0].name}
-            </Typography>
-          </>
-        )) || (
-          <Typography
-            margin="5px 0"
-            size={13}
-            weight="600"
-            lineheight="16"
-            color="white"
-            textalign="center"
-          >
-            Nenhuma música encontrada
-          </Typography>
-        )}
-        <TrackList listTrack={tracks} image={image} />
+          )}
+          <TrackList listTrack={tracks} image={image} />
+        </div>
       </Content>
     </Container>
   );
