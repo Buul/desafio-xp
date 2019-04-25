@@ -6,17 +6,17 @@ import pxToRem from '../../helpers/scales';
 
 const InputCustomize = styled.input`
   border: none;
-  border-bottom: ${pxToRem(2)} solid ${props => props.theme.colors.greyMedium} !important;
-  background-color: ${props => props.theme.colors.greyDark} !important;
+  border-bottom: ${pxToRem(2)} solid ${props => props.theme.colors.greyMedium};
+  background-color: ${props => props.theme.colors.greyDark};
   color: ${props => props.theme.colors.greyLight};
   width: 100%;
-  height: ${pxToRem(30)} !important;
+  height: ${pxToRem(30)};
   padding: ${pxToRem(15)} 0 ${pxToRem(15)} ${pxToRem(22)};
   outline: none;
 
   &:focus {
     border-bottom: ${pxToRem(2)} solid
-      ${props => props.theme.input.hover.border.color[props.typeInput]} !important;
+      ${props => props.theme.input.hover.border.color[props.typeInput]};
   }
 
   ${props =>

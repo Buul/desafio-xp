@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/login';
 import Home from './components/home';
 import Album from './components/home/album';
+import AlbumList from './components/home/album/AlbumList';
 import { isAuthenticated } from './services/auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -17,6 +18,7 @@ const Routes = () => (
     <Switch>
       <PrivateRoute path="/home" component={Home} />
       <PrivateRoute path="/album" component={Album} />
+      <PrivateRoute path="/albums/:id" component={AlbumList} />
       <Route exact path="/" component={Login} />
       <Redirect from="*" exact to="/" />
     </Switch>

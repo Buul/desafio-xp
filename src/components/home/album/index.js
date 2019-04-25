@@ -31,6 +31,8 @@ const Album = ({ album, history, spinner, showMessage }) => {
         });
     }
   }, []);
+
+  const image = (album && (album.images.length && album.images[0].url)) || spotifyEmpty;
   return (
     <Container>
       <LinkBtnVoltar
@@ -42,7 +44,7 @@ const Album = ({ album, history, spinner, showMessage }) => {
         {(album && (
           <>
             <DiskCover>
-              <img src={(album.images.length && album.images[0].url) || spotifyEmpty} alt="img" />
+              <img src={image} alt="img" />
             </DiskCover>
             <Typography
               margin="5px 0"
@@ -76,7 +78,7 @@ const Album = ({ album, history, spinner, showMessage }) => {
             Nenhuma música encontrada
           </Typography>
         )}
-        <TrackList listTrack={tracks} />
+        <TrackList listTrack={tracks} image={image} />
       </Content>
     </Container>
   );

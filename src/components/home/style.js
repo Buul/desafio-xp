@@ -20,6 +20,14 @@ const ContentStyle = styled.div`
     width: 100%;
   }
 `;
+
+const LineStyle = styled.div`
+  background-color: ${props => props.theme.colors.greyLight};
+  height: ${pxToRem(1)};
+  width: 100%;
+  margin: ${pxToRem(24)} 0;
+`;
+
 export const Container = ({ children }) => <ContainerStyle>{children}</ContainerStyle>;
 
 Container.propTypes = {
@@ -79,3 +87,5 @@ export const LinkBtnVoltar = ({ onClickLink }) => (
 LinkBtnVoltar.propTypes = {
   onClickLink: PropTypes.func.isRequired,
 };
+
+export const Line = () => <LineStyle />;

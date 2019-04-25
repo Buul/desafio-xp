@@ -7,15 +7,16 @@ const Media = ({ data, title, type, onSelectMedia }) => (
   <>
     {data && (
       <>
-        <Typography margin="20px 0" size={16} weight="600" lineheight="16" color="greyLight">
+        <Typography margin="20px 0" size={16} weight="600" lineheight="20" color="greyLight">
           {title}
         </Typography>
         {data.items.map(item => {
           const image = type === 'track' ? item.album.images : item.images;
+          const srcImage = (image.length && image[0].url) || spotifyEmpty;
           return (
             <BoxMedia key={item.id}>
-              <DiskCover onClick={() => onSelectMedia({ data: item, type })}>
-                <img src={(image.length && image[0].url) || spotifyEmpty} alt="img" />
+              <DiskCover onClick={() => onSelectMedia({ data: item, type, image: srcImage })}>
+                <img src={srcImage} alt="img" />
               </DiskCover>
               <Typography
                 margin="5px 0"

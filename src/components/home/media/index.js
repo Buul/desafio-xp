@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { selectedMedia } from '../../../actions';
 import Card from './Card';
+import ModalPlayer from '../../player';
+import { Line } from '../style';
 
-const Media = ({ spotifyData: { albums, artists, tracks }, selectedMediaAction, history }) => {
-  const handleSelectedMedia = ({ data, type }) => {
+const Media = ({
+  spotifyData,
+  spotifyData: { albums, artists, tracks },
+  selectedMediaAction,
+  history,
+}) => {
+  const [modalPlayer, setModalPlayer] = useState({ open: false, data: {} });
+
+  const handleSelectedMedia = ({ data, type, image }) => {
     selectedMediaAction(data);
     switch (type) {
       case 'album':
         history.push('/album');
         break;
-
+      case 'artist':
+        history.push(`/albums/${data.name}`);
+        break;
+      case 'track':
+        setModalPlayer({
+          open: true,
+          data: { previewUrl: data.preview_url, image, trackName: data.name },
+        });
+        break;
       default:
         break;
     }
@@ -21,23 +39,36 @@ const Media = ({ spotifyData: { albums, artists, tracks }, selectedMediaAction, 
 
   return (
     <>
-      <Card
-        data={albums}
-        title="Álbuns"
-        type="album"
-        onSelectMedia={data => handleSelectedMedia(data)}
-      />
-      <Card
-        data={artists}
-        title="Artistas"
-        type="artist"
-        onSelectMedia={data => handleSelectedMedia(data)}
-      />
-      <Card
-        data={tracks}
-        title="Músicas"
-        type="track"
-        onSelectMedia={data => handleSelectedMedia(data)}
+      {!isEmpty(spotifyData) && (
+        <>
+          <Card
+            data={albums}
+            title="Álbuns"
+            type="album"
+            onSelectMedia={data => handleSelectedMedia(data)}
+          />
+          <Line />
+          <Card
+            data={artists}
+            title="Artistas"
+            type="artist"
+            onSelectMedia={data => handleSelectedMedia(data)}
+          />
+          <Line />
+          <Card
+            data={tracks}
+            title="Músicas"
+            type="track"
+            onSelectMedia={data => handleSelectedMedia(data)}
+          />
+        </>
+      )}
+      <ModalPlayer
+        open={modalPlayer.open}
+        data={modalPlayer.data}
+        handleClose={() => {
+          setModalPlayer({ open: false, data: {} });
+        }}
       />
     </>
   );

@@ -11,18 +11,20 @@ import Media from './media';
 
 const Home = ({ spinner, updateSpotify, showMessage }) => {
   const handleOnSearch = search => {
-    spinner(true);
-    api
-      .get(`search?q=${encodeURIComponent(search)}&type=artist,album,track`)
-      .then(({ data }) => {
-        updateSpotify(data);
-        spinner(false);
-      })
-      .catch(err => {
-        const message = formatMessage(err);
-        showMessage({ message: [message], icon: 'error' });
-        spinner(false);
-      });
+    if (search !== '') {
+      spinner(true);
+      api
+        .get(`search?q=${encodeURIComponent(search)}&type=artist,album,track`)
+        .then(({ data }) => {
+          updateSpotify(data);
+          spinner(false);
+        })
+        .catch(err => {
+          const message = formatMessage(err);
+          showMessage({ message: [message], icon: 'error' });
+          spinner(false);
+        });
+    }
   };
 
   return (
