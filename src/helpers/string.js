@@ -7,4 +7,4 @@ export const firstLetterUpper = string => {
   return stringResponse;
 };
 
-export default firstLetterUpper;
+export const formatNumber = number => (number < 10 ? `0${number}` : number);

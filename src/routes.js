@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Login from './components/login';
+import Home from './components/home';
+import Album from './components/home/album';
 import { isAuthenticated } from './services/auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -11,13 +12,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-PrivateRoute.propTypes = {
-  component: PropTypes.func.isRequired,
-};
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      {/* <PrivateRoute path="/home" component={Home} /> */}
+      <PrivateRoute path="/home" component={Home} />
+      <PrivateRoute path="/album" component={Album} />
       <Route exact path="/" component={Login} />
       <Redirect from="*" exact to="/" />
     </Switch>

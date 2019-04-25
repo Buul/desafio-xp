@@ -1,6 +1,6 @@
-import { TOKEN_KEY_VAI_CAR } from '../helpers/constants';
+import { TOKEN_SPOTIFY } from '../helpers/constants';
 
-export const TOKEN_KEY = TOKEN_KEY_VAI_CAR;
+export const TOKEN_KEY = TOKEN_SPOTIFY;
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const login = token => {
